@@ -1,0 +1,22 @@
+{
+  "name": "npmgamepackage",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liberaa/NpmGamePackage.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Lukas Söderlund ls224ec",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Liberaa/NpmGamePackage/issues"
+  },
+  "homepage": "https://github.com/Liberaa/NpmGamePackage#readme",
+  "description": ""
+}
