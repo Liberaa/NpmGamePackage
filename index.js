@@ -60,6 +60,11 @@ export function MoveDiv(options = {}) {
     })
 
     function animate(){
+        if(left) currentX -= speed
+        if(right) currentX += speed
+        if(up) currentY -= speed
+        player.style.left = currentX + px
+        player.style.top = currentY + px
         requestAnimationFrame(animate)
     }
     animate()
