@@ -42,6 +42,7 @@ export function MoveDiv(options = {}) {
                 velocityY = -jumpStrength
             }
         }
+        console.log(key)
     })
 
      document.addEventListener('keyup', event => {
@@ -55,7 +56,12 @@ export function MoveDiv(options = {}) {
             if (key === 'a') left = false
             if (key === 'd') right = false
         }
+        console.log(key)
     })
 
+    function animate(){
+        requestAnimationFrame(animate)
+    }
+    animate()
 
 }
