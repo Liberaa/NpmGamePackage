@@ -2,7 +2,7 @@ export function MoveDiv(options = {}) {
     const player = document.createElement('div')
     const controlScheme = options.controlscheme || 'wasd' // w,a,s,d or platform game
     const px = 'px' // instead of writing 'px'
-    const jumpStrength = options.jump || 16
+    const jumpStrength = options.jump || 10
     const gravity = options.gravity || 0.3
     const ground = options.ground || 400 // y postion for the flooooooor
 
