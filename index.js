@@ -21,9 +21,9 @@ export function MoveDiv(options = {}) {
     let down = false
     let isJumping = false
     let velocityY = 0
-    let currentX = 100 // left
+    let currentX = 60 // left
     let currentY = 100 // top
-    let speed = options.speed || 10
+    let speed = options.speed || 30
 
     document.body.appendChild(player)
 
@@ -61,12 +61,12 @@ export function MoveDiv(options = {}) {
         }
     })
 
-    function animate() {
+    function animate() { 
         if (controlScheme === 'wasd') {
-            if (left) {
+            if (left && currentX > 0){
                 currentX -= speed
-                player.style.left = currentX + px
-            } if (right) {
+                player.style.left = currentX + px // adjust window.innerwidth so it matches player px
+            } if (right && currentX < window.innerWidth - 70) {
                 currentX += speed
                 player.style.left = currentX + px
             } if (up) {
