@@ -62,7 +62,7 @@ export function Obstacle(options = {}) {
     document.body.appendChild(obstacle)
 
     obstacles.push({
-        x, y, width, height
+         obstacle, x, y, width, height
     })
 
     return obstacle

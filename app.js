@@ -4,7 +4,7 @@ import { Obstacle } from "./obstacle.js";
 
 
 
-MoveDiv({ controlscheme: 'wasd'
+MoveDiv({ controlscheme: 'platform'
 })
 
 
@@ -13,10 +13,49 @@ Obstacle({
   y: 200,
   width: 80,
   height: 80,
-  color: 'red',
-  rounded: true, 
-  border: '3px solid black',
-  opacity: 0.8,
-  rotate: 15,
-  zIndex: 10,
+  color: 'black',
+  border: '3px solid white',
+  opacity: 10.8,
+})
+
+Obstacle({
+  x: 200,
+  y: 200,
+  width: 80,
+  height: 80,
+  color: 'green',
+  border: '3px solid white',
+  opacity: 10.8,
+})
+
+
+
+Obstacle({
+  x: 350,
+  y: 400,
+  width: 80,
+  height: 80,
+  color: 'white',
+  border: '3px solid white',
+  opacity: 10.8,
+})
+
+Obstacle({
+  x: 80,
+  y: 600,
+  width: 650,
+  height: 80,
+  color: 'brown',
+  border: '3px solid white',
+  opacity: 10.8,
+})
+
+Obstacle({
+  x: 950,
+  y: 800,
+  width: 650,
+  height: 80,
+  color: 'brown',
+  border: '3px solid white',
+  opacity: 10.8,
 })
