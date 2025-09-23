@@ -24,40 +24,6 @@ export function Obstacle(options = {}) {
         obstacle.style.backgroundColor = options.color || 'blue'
     }
 
-    // border
-    if (options.border) {
-        obstacle.style.border = options.border
-    }
-
-    // circle option
-    if (options.rounded) {
-        obstacle.style.borderRadius = options.rounded === true ? '50%' : options.rounded
-    }
-
-    // opacity
-    if (options.opacity !== undefined) {
-        obstacle.style.opacity = options.opacity
-    }
-
-    // z-index
-    if (options.zIndex !== undefined) {
-        obstacle.style.zIndex = options.zIndex
-    }
-
-    // rotation
-    if (options.rotate) {
-        obstacle.style.transform = `rotate(${options.rotate}deg)`
-    }
-
-    // css options
-    if (options.className) {
-        obstacle.classList.add(options.className)
-    }
-
-    // custom id
-    if (options.id) {
-        obstacle.id = options.id
-    }
 
     document.body.appendChild(obstacle)
 
@@ -66,6 +32,23 @@ export function Obstacle(options = {}) {
     })
 
     return obstacle
+}
+
+// coins to keep scoor or something don't know yet. 
+export function value(options = {}){
+const coin = document.createElement('div')
+
+coin.style.width = options.width || '60px'
+coin.style.height = options.height || '60px'
+coin.style.position = 'absolute'
+coin.style.borderRadius = '180px'
+coin.style.backgroundColor = 'gold'
+coin.style.left = '100px'
+coin.style.top
+
+document.body.appendChild(coin)
+
+return coin
 }
 
 

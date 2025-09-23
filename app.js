@@ -1,5 +1,5 @@
 import { MoveDiv } from "./index.js";
-import { Obstacle } from "./obstacle.js";
+import { Obstacle, value } from "./obstacle.js";
 
 
 
@@ -46,7 +46,7 @@ Obstacle({
   width: 650,
   height: 80,
   color: 'brown',
-  border: '3px solid white',
+  border: '3px solid gold',
   opacity: 10.8,
 })
 
@@ -59,3 +59,8 @@ Obstacle({
   border: '3px solid white',
   opacity: 10.8,
 })
+
+
+
+
+value()
