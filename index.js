@@ -2,9 +2,9 @@ export function MoveDiv(options = {}) {
     const player = document.createElement('div')
     const controlScheme = options.controlscheme || 'wasd' // w,a,s,d or platform game
     const px = 'px' // instead of writing 'px'
-    const jumpStrength = options.jump || 10
+    const jumpStrength = options.jump || 20
     const gravity = options.gravity || 0.3
-    const ground = options.ground || 400 // y postion for the flooooooor
+    const ground = options.ground || 800 // y postion for the flooooooor
 
     console.log(controlScheme)
     player.style.height = '60px'
@@ -14,6 +14,14 @@ export function MoveDiv(options = {}) {
     player.style.left = '100px'
     player.style.top = '100px'
     player.style.borderRadius = '24px'
+
+        if (options.image) {
+        player.style.backgroundImage = `url(${options.image})`
+        player.style.backgroundSize = options.backgroundSize || 'cover'
+        player.style.backgroundRepeat = options.backgroundRepeat || 'no-repeat'
+    } else {
+        player.style.backgroundColor = options.color || 'blue'
+    }
 
     let left = false
     let right = false
@@ -69,18 +77,18 @@ export function MoveDiv(options = {}) {
             } if (right && currentX < window.innerWidth - 70) {
                 currentX += speed
                 player.style.left = currentX + px
-            } if (up) {
+            } if (up && currentY > 0) {
                 currentY -= speed
                 player.style.top = currentY + px
-            } if (down) {
+            } if (down && currentY < window.innerHeight - 60) {
                 currentY += speed
                 player.style.top = currentY + px
             }
         } else if (controlScheme === 'platform') {
-            if (left) {
+            if (left && currentX > 0) {
                 currentX -= speed
                 player.style.left = currentX + px
-            } if (right) {
+            } if (right && currentX < window.innerWidth - 65) {
                 currentX += speed
                 player.style.left = currentX + px
             }
