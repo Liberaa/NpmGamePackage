@@ -1,3 +1,5 @@
+export const obstacles = []
+
 export function Obstacle(options = {}) {
     //default
     const obstacle = document.createElement('div')
@@ -59,5 +61,13 @@ export function Obstacle(options = {}) {
 
     document.body.appendChild(obstacle)
 
+    obstacles.push({
+        x, y, width, height
+    })
+
     return obstacle
 }
+
+
+//TODO Track obstacle so we can have a collision so we can jump on it. 
+// Plan push obstacle to an array, in index.js loop throw and I don't know atm...
