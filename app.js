@@ -1,3 +1,6 @@
 import { MoveDiv } from "./index.js";
 
-MoveDiv()
+
+
+MoveDiv({ controlscheme: 'platform'
+})
