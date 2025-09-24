@@ -42,5 +42,3 @@ export function value(options = {}) {
     return coin
 }
 
-//TODO Track obstacle so we can have a collision so we can jump on it. 
-// Plan push obstacle to an array, in index.js loop throw and I don't know atm...

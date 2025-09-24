@@ -4,7 +4,7 @@ import { Obstacle, value } from "./obstacle.js";
 
 
 
-MoveDiv({ controlscheme: 'platform'
+MoveDiv({ controlscheme: 'wasd'
 })
 
 

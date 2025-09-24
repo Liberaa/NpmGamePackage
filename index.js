@@ -58,7 +58,7 @@ export function MoveDiv(options = {}) {
             if (key === 'd') right = false
             if (key === 's') down = false
             if (key === 'w') up = false
-            if (key === ' ') isJumping = false // fixed: was "jump" before
+            if (key === ' ') isJumping = false 
         } else if (controlScheme === 'platform') {
             if (key === 'a') left = false
             if (key === 'd') right = false
@@ -69,7 +69,7 @@ export function MoveDiv(options = {}) {
         if (controlScheme === 'wasd') {
             if (left && currentX > 0) {
                 currentX -= speed
-                player.style.left = currentX + px // adjust window.innerwidth so it matches player px
+                player.style.left = currentX + px // adjust window.innerwidth - 70 or what ever it's- so it matches player px
             }
             if (right && currentX < window.innerWidth - 70) {
                 currentX += speed
