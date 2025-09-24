@@ -1,31 +1,25 @@
-//index.js
-
 import { obstacles } from "./obstacle.js"
-
+import { createGameElement } from "./element.js"
 
 export function MoveDiv(options = {}) {
-    const player = document.createElement('div')
+    // create player with helper
+    const player = createGameElement({
+        width: 60,
+        height: 60,
+        x: 100,
+        y: 100,
+        borderRadius: 24,
+        color: options.color,
+        image: options.image,
+        backgroundSize: options.backgroundSize,
+        backgroundRepeat: options.backgroundRepeat
+    })
+
     const controlScheme = options.controlscheme || 'wasd' // w,a,s,d or platform game
     const px = 'px' // instead of writing 'px'
     const jumpStrength = options.jump || 15
     const gravity = options.gravity || 0.3
     const ground = options.ground || 900 // y postion for the flooooooor
-
-    player.style.height = '60px'
-    player.style.width = '60px'
-    player.style.backgroundColor = options.color || 'blue'
-    player.style.position = 'absolute'
-    player.style.left = '100px'
-    player.style.top = '100px'
-    player.style.borderRadius = '24px'
-
-    if (options.image) {
-        player.style.backgroundImage = `url(${options.image})`
-        player.style.backgroundSize = options.backgroundSize || 'cover'
-        player.style.backgroundRepeat = options.backgroundRepeat || 'no-repeat'
-    } else {
-        player.style.backgroundColor = options.color || 'blue'
-    }
 
     let left = false
     let right = false
@@ -37,12 +31,7 @@ export function MoveDiv(options = {}) {
     let currentY = 100 // top
     let speed = options.speed || 15
 
-    document.body.appendChild(player)
-
-
-
-// re write to switch? (to many if statments. )
-
+    // re write to switch? (to many if statments. )
     document.addEventListener('keydown', event => {
         const key = event.key.toLowerCase() // if user got caps
         // if user wants wasd game do this else do that
@@ -145,7 +134,13 @@ export function MoveDiv(options = {}) {
                     currentY = obstacleBottom
                     velocityY = 0
                     // left side of the obstacle so you can fly throw it 
-                } if (playerRight >= obstacleLeft && playerLeft < obstacleLeft && playerBottom > obstacleTop && playerTop < obstacleBottom) {
+                } 
+                if (
+                    playerRight >= obstacleLeft && 
+                    playerLeft < obstacleLeft && 
+                    playerBottom > obstacleTop && 
+                    playerTop < obstacleBottom
+                ) {
                     currentX = obstacleLeft - parseInt(player.style.width)
 
                     // SOmething wrong here can't find it :() 
@@ -175,6 +170,4 @@ export function MoveDiv(options = {}) {
         requestAnimationFrame(animate)
     }
     animate()
-
 }
- 
