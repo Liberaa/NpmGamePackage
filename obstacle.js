@@ -1,3 +1,5 @@
+// obstacle.js
+
 export const obstacles = []
 
 export function Obstacle(options = {}) {

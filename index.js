@@ -1,3 +1,5 @@
+//index.js
+
 import { obstacles } from "./obstacle.js"
 
 
@@ -39,7 +41,7 @@ export function MoveDiv(options = {}) {
 
 
 
-
+// re write to switch? (to many if statments. )
 
     document.addEventListener('keydown', event => {
         const key = event.key.toLowerCase() // if user got caps
