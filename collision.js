@@ -3,7 +3,8 @@ import { obstacles } from "./obstacle.js"
 
 /**
  * Handles player collisions with obstacles.
- * Uses AABB (Axis-Aligned Bounding Box) for simple 2D collision detection.
+ * Uses AABB (Axis-Aligned Bounding Box) for simple 2D collision detection. Can Link overflow
+ * https://stackoverflow.com/questions/79650138/swept-aabb-collision-between-circle-and-rectangle 
  *
  * @param {HTMLElement} player - the player element
  * @param {number} currentX - current X position of the player
