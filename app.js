@@ -2,7 +2,7 @@ import { MoveDiv } from "./index.js";
 import { Obstacle, value } from "./obstacle.js";
 
 
-
+// example of usage, need html file to work
 
 MoveDiv({ controlscheme: 'wasd'
 })
