@@ -1,5 +1,6 @@
-import { obstacles } from "./obstacle.js"
+import { obstacles } from "./obstacle.js" // no need
 import { createGameElement } from "./element.js"
+import { handleCollisions } from "./collision.js" // new import
 
 export function MoveDiv(options = {}) {
     // create player with helper
@@ -98,66 +99,12 @@ export function MoveDiv(options = {}) {
             currentY += velocityY
             player.style.top = currentY + px
 
-            // check collisions with obstacles
-            for (const obstacle of obstacles) {
-                const playerBottom = currentY + parseInt(player.style.height)
-                const playerTop = currentY
-                const playerRight = currentX + parseInt(player.style.width)
-                const playerLeft = currentX
-
-                const obstacleTop = obstacle.y
-                const obstacleBottom = obstacle.y + obstacle.height
-                const obstacleLeft = obstacle.x
-                const obstacleRight = obstacle.x + obstacle.width
-
-                // standing on obstacle
-                if (
-                    playerBottom >= obstacleTop &&
-                    playerBottom <= obstacleTop + 20 &&
-                    playerRight > obstacleLeft &&
-                    playerLeft < obstacleRight &&
-                    velocityY >= 0
-                ) {
-                    currentY = obstacleTop - parseInt(player.style.height)
-                    velocityY = 0
-                    isJumping = false
-                }
-
-                // hitting head under obstacle
-                if (
-                    playerTop <= obstacleBottom &&
-                    playerTop >= obstacleBottom - 20 &&
-                    playerRight > obstacleLeft &&
-                    playerLeft < obstacleRight &&
-                    velocityY < 0
-                ) {
-                    currentY = obstacleBottom
-                    velocityY = 0
-                    // left side of the obstacle so you can fly throw it 
-                } 
-                if (
-                    playerRight >= obstacleLeft && 
-                    playerLeft < obstacleLeft && 
-                    playerBottom > obstacleTop && 
-                    playerTop < obstacleBottom
-                ) {
-                    currentX = obstacleLeft - parseInt(player.style.width)
-
-                    // SOmething wrong here can't find it :() 
-                    // Something here are wrong setnings let's try to just break it down
-                    // if playerLeft are smaller or the same as the right obstacle 
-                }
-
-                // tunnel vission
-                if (
-                    playerLeft <= obstacleRight &&
-                    playerRight > obstacleRight &&
-                    playerBottom > obstacleTop &&
-                    playerTop < obstacleBottom
-                ) {
-                    currentX = obstacleRight
-                }
-            }
+            // check collisions with obstacles (moved into collision.js)
+            const result = handleCollisions(player, currentX, currentY, velocityY, isJumping)
+            currentX = result.currentX
+            currentY = result.currentY
+            velocityY = result.velocityY
+            isJumping = result.isJumping
 
             // stop at groundY
             if (currentY >= ground) {
