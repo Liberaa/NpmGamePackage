@@ -1,4 +1,3 @@
-// collision.js
 import { obstacles, coins } from "./obstacle.js"
 import { addScore } from "./score.js"
 

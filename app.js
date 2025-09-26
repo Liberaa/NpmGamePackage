@@ -11,7 +11,7 @@ import {
   nextScene,
   createMenu,
   closeMenu
-} from "./import.js"   // when testing locally
+} from "./import.js"
 
 
 // ScroreDisplay()

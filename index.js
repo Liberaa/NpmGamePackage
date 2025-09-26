@@ -21,7 +21,7 @@ export function MoveDiv(options = {}) {
     const jumpStrength = options.jump || 15
     const gravity = options.gravity || 0.3
     const ground = options.ground || 900 // y postion for the flooooooor
-   
+
     let left = false
     let right = false
     let up = false
@@ -31,51 +31,56 @@ export function MoveDiv(options = {}) {
     let currentX = 60 // left
     let currentY = 100 // top
     let speed = options.speed || 15
-
-    // re write to switch? (to many if statments. )
-    document.addEventListener('keydown', event => {
-        const key = event.key.toLowerCase() // if user got caps
-        // if user wants wasd game do this else do that
-        if (controlScheme === 'wasd') {
-            if (key === 'a') left = true
-            if (key === 'd') right = true
-            if (key === 's') down = true
-            if (key === 'w') up = true
-            if (key === ' ') isJumping = true // maby not on wasd
-        } else if (controlScheme === 'platform') {
-            if (key === 'a') left = true
-            if (key === 'd') right = true
-            if (key === ' ' && !isJumping) {
-                isJumping = true
-                velocityY = -jumpStrength
-            }
-        }
-    })
+  
 
     document.addEventListener('keyup', event => {
+        this.keyUpListener(event)
+    })
+
+
+
+    class PlayerInput {
+        constructor(controlScheme = '') {
+            this.left = left
+            this.right = right
+            this.up = up
+        }
+    left = false
+     right = false
+     up = false
+     down = false
+
+         keyUpListener(event) {
         const key = event.key.toLowerCase()
         if (controlScheme === 'wasd') {
             if (key === 'a') left = false
             if (key === 'd') right = false
             if (key === 's') down = false
             if (key === 'w') up = false
-            if (key === ' ') isJumping = false 
+            if (key === ' ') isJumping = false
         } else if (controlScheme === 'platform') {
             if (key === 'a') left = false
             if (key === 'd') right = false
         }
-    })
+    }
 
-    function animate() {
+    
+
+    }
+
+    function animate(playerInput) {
+
+        if (playerInput.playerWantsToGoLeft() && currentX > 0) {
+            currentX -= speed
+            player.style.left = currentX + px 
+        }
+        if (playerInput.playerWantsToGoRight() && currentX < window.innerWidth - 60) {
+            currentX += speed
+            player.style.left = currentX + px
+        }
+
         if (controlScheme === 'wasd') {
-            if (left && currentX > 0) {
-                currentX -= speed
-                player.style.left = currentX + px // adjust window.innerwidth - 70 or what ever it's- so it matches player px
-            }
-            if (right && currentX < window.innerWidth - 70) {
-                currentX += speed
-                player.style.left = currentX + px
-            }
+
             if (up && currentY > 0) {
                 currentY -= speed
                 player.style.top = currentY + px
@@ -85,14 +90,7 @@ export function MoveDiv(options = {}) {
                 player.style.top = currentY + px
             }
         } else if (controlScheme === 'platform') {
-            if (left && currentX > 0) {
-                currentX -= speed
-                player.style.left = currentX + px
-            }
-            if (right && currentX < window.innerWidth - 65) {
-                currentX += speed
-                player.style.left = currentX + px
-            }
+
 
             // gravity and jumping for platform
             velocityY += gravity
