@@ -40,7 +40,7 @@ export function MoveDiv(options = {}) {
 
 
     class PlayerInput {
-        constructor(controlScheme = '') {
+        constructor() {
             this.left = left
             this.right = right
             this.up = up

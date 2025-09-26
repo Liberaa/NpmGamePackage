@@ -15,7 +15,7 @@ import {
 
 
 // ScroreDisplay()
-MoveDiv({ controlscheme: "wasd" })
+MoveDiv({ controlscheme: "platform" })
 
 /*
 addScene(() => {

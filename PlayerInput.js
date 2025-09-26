@@ -11,7 +11,7 @@ class playerInput {
         document.addEventListener('keydown', this.handleKeyDown)
     }
     handleKeyDown = (event) => {
-        const key = event.key.toLowerCase()
+        const key = event.key.to
 
         if (this.controlScheme === "wasd") {
             if (key === "a") this.left = true
