@@ -1,5 +1,5 @@
 let scrore = 0
-let scoreElement = null // scoreElement are nothing 
+let scoreElement = null 
 
 export function ScroreDisplay() {
     if(!scoreElement){ // if no score element we create one
@@ -17,7 +17,7 @@ export function ScroreDisplay() {
         document.body.appendChild(scoreElement)
     }
 
-    updateScore() // make sure it shows "score: 0" at start
+    updateScore() 
 }
 
 function updateScore() {
@@ -27,12 +27,12 @@ function updateScore() {
 }
 
 export function addScore(amount = 0){
-    scrore += amount // increase score
-    updateScore()    // update display text
+    scrore += amount 
+    updateScore()    
 }
 
 export function resetScore() {
-    scrore = 0       // reset back to zero
+    scrore = 0      
     updateScore()
 }
 

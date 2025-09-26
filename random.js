@@ -20,7 +20,7 @@ document.addEventListener('keydown', event => {
                     up = true
                     break
                 case ' ':
-                    isJumping = true // maby not on wasd
+                    isJumping = true
                     break
             }
             break
@@ -60,7 +60,7 @@ document.addEventListener('keyup', event => {
                     down = false
                     break
                 case 'w':
-                    up = false
+                    up = false 
                     break
                 case ' ':
                     isJumping = false // fixed: was "jump" before

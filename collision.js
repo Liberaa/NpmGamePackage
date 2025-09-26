@@ -4,7 +4,7 @@ import { addScore } from "./score.js"
 
 /**
  * Handles player collisions with obstacles and coins.
- * Uses AABB (Axis-Aligned Bounding Box) for simple 2D collision detection. Can Link overflow
+ * Uses AABB (Axis-Aligned Bounding Box) for simple 2D collision detection. overflow link :
  * https://stackoverflow.com/questions/79650138/swept-aabb-collision-between-circle-and-rectangle 
  *
  * @param {HTMLElement} player - the player element
@@ -66,7 +66,7 @@ for (const coin of coins) {
         currentY + playerHeight > coin.y
 
     if (isTouching) {
-        addScore(10)          // add 10 points for collecting
+        addScore(10)          
         coin.element.remove() // remove coin from DOM
 
         // remove coin from array without breaking the loop

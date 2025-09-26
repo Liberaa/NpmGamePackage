@@ -5,7 +5,7 @@ let menuElement = null
 
 export function createMenu(options = {}) {
     if (menuElement) {
-        menuElement.remove() // remove old menu if it exists
+        menuElement.remove()
     }
 
     // menu container

@@ -1,8 +1,11 @@
 {
   "name": "npmgamepackage",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A simple 2D game helper package with player movement, obstacles, coins, score, scenes, and menus.",
+  "main": "import.js",
+  "type": "module",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -10,13 +13,16 @@
     "url": "git+https://github.com/Liberaa/NpmGamePackage.git"
   },
   "keywords": [
+    "2d",
+    "game",
+    "engine",
+    "javascript",
     "npm"
   ],
-  "author": "Lukas Söderlund ls224ec",
+  "author": "Lukas Söderlund <ls224ec>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Liberaa/NpmGamePackage/issues"
   },
-  "homepage": "https://github.com/Liberaa/NpmGamePackage#readme",
-  "description": ""
+  "homepage": "https://github.com/Liberaa/NpmGamePackage#readme"
 }

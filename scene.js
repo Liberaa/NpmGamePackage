@@ -12,7 +12,6 @@ export function addScene(sceneFn) {
 export function setScene(index) {
     if (index < 0 || index >= scenes.length) return
 
-    // clear old scene
     for (const obj of obstacles) {
         if (obj.obstacle) obj.obstacle.remove()
     }

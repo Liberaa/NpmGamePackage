@@ -1,6 +1,6 @@
 import { obstacles } from "./obstacle.js" // no need
 import { createGameElement } from "./element.js"
-import { handleCollisions } from "./collision.js" // new import
+import { handleCollisions } from "./collision.js"
 
 export function MoveDiv(options = {}) {
     // create player with helper
@@ -21,7 +21,7 @@ export function MoveDiv(options = {}) {
     const jumpStrength = options.jump || 15
     const gravity = options.gravity || 0.3
     const ground = options.ground || 900 // y postion for the flooooooor
-
+   
     let left = false
     let right = false
     let up = false

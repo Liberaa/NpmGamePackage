@@ -1,18 +1,23 @@
-import { MoveDiv } from "./index.js"
-import { Obstacle, value } from "./obstacle.js"
-import { ScroreDisplay, resetScore, getScore } from "./score.js" // score system
-import { createMenu, closeMenu } from "./meny.js"                 // menu system
-import { addScene, setScene, nextScene } from "./scene.js"        // scene system
+//app.js TEST FILE!!!!
+import {
+  MoveDiv,
+  Obstacle,
+  value,
+  ScroreDisplay,
+  resetScore,
+  getScore,
+  addScene,
+  setScene,
+  nextScene,
+  createMenu,
+  closeMenu
+} from "./import.js"   // when testing locally
 
-// create the score UI in top-left
-ScroreDisplay()
 
-// create a player with platformer controls
+// ScroreDisplay()
 MoveDiv({ controlscheme: "platform" })
 
-// ---------- SCENES ----------
-
-// Scene 1
+/*
 addScene(() => {
   Obstacle({ x: 500, y: 200, width: 80, height: 80, color: "black", border: "3px solid white" })
   Obstacle({ x: 200, y: 200, width: 80, height: 80, color: "green", border: "3px solid white" })
@@ -25,7 +30,6 @@ addScene(() => {
   value({ x: 1000, y: 750 })
 })
 
-// Scene 2
 addScene(() => {
   Obstacle({ x: 100, y: 500, width: 600, height: 80, color: "darkblue", border: "3px solid white" })
   Obstacle({ x: 200, y: 700, width: 600, height: 80, color: "darkblue", border: "3px solid white" })
@@ -36,7 +40,6 @@ addScene(() => {
   value({ x: 600, y: 250 })
 })
 
-// Scene 3
 addScene(() => {
   Obstacle({ x: 150, y: 550, width: 500, height: 80, color: "red", border: "3px solid white" })
   Obstacle({ x: 800, y: 300, width: 200, height: 80, color: "orange", border: "3px solid black" })
@@ -46,7 +49,7 @@ addScene(() => {
   value({ x: 700, y: 280 })
 })
 
-// Scene 4 (you can keep adding more)
+
 addScene(() => {
   Obstacle({ x: 100, y: 600, width: 800, height: 80, color: "gray", border: "3px solid white" })
   Obstacle({ x: 400, y: 400, width: 250, height: 80, color: "pink", border: "3px solid purple" })
@@ -56,23 +59,56 @@ addScene(() => {
   value({ x: 650, y: 250 })
 })
 
-// ---------- START ----------
+addScene(() => {
+  Obstacle({ x: 500, y: 200, width: 80, height: 80, color: "black", border: "3px solid white" })
+  Obstacle({ x: 200, y: 200, width: 80, height: 80, color: "green", border: "3px solid white" })
+  Obstacle({ x: 350, y: 400, width: 80, height: 80, color: "white", border: "3px solid white" })
+  Obstacle({ x: 80, y: 600, width: 650, height: 80, color: "brown", border: "3px solid gold" })
+  Obstacle({ x: 950, y: 800, width: 650, height: 80, color: "brown", border: "3px solid white" })
 
-// Start at scene 0
+  value({ x: 300, y: 100 })
+  value({ x: 600, y: 180 })
+  value({ x: 1000, y: 750 })
+})
+
+
+addScene(() => {
+  Obstacle({ x: 500, y: 200, width: 80, height: 80, color: "black", border: "3px solid white" })
+  Obstacle({ x: 200, y: 200, width: 80, height: 80, color: "green", border: "3px solid white" })
+  Obstacle({ x: 350, y: 400, width: 80, height: 80, color: "white", border: "3px solid white" })
+  Obstacle({ x: 80, y: 600, width: 650, height: 80, color: "brown", border: "3px solid gold" })
+  Obstacle({ x: 1200, y: 900, width: 650, height: 80, color: "brown", border: "3px solid white" })
+
+  value({ x: 100, y: 100 })
+  value({ x: 600, y: 180 })
+  value({ x: 1200, y: 800 })
+})
+
+
+addScene(() => {
+  Obstacle({ x: 500, y: 200, width: 80, height: 80, color: "black", border: "3px solid white" })
+  Obstacle({ x: 200, y: 200, width: 80, height: 80, color: "green", border: "3px solid white" })
+  Obstacle({ x: 350, y: 400, width: 80, height: 80, color: "white", border: "3px solid white" })
+  Obstacle({ x: 80, y: 600, width: 650, height: 80, color: "brown", border: "3px solid gold" })
+  Obstacle({ x: 1500, y: 200, width: 650, height: 80, color: "brown", border: "3px solid white" })
+
+  value({ x: 100, y: 100 })
+  value({ x: 1700, y: 180 })
+  value({ x: 1200, y: 800 })
+  
+})
+
 setScene(0)
 
-// Automatically move to next scene when score >= 30
 setInterval(() => {
   if (getScore() >= 30) {
     nextScene()
   }
 }, 500)
 
-// ---------- MENU ----------
 
-// Pause menu (press "." to open, release to close)
 document.addEventListener("keydown", (e) => {
-  if (e.key.toLowerCase() === ".") {
+  if (e.key.toLowerCase() === "m") {
     createMenu({
       title: "Pause Menu",
       buttons: [
@@ -83,5 +119,5 @@ document.addEventListener("keydown", (e) => {
     })
   }
 })
-
+*/
 

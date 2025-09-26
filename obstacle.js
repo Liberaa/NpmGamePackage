@@ -1,7 +1,7 @@
 import { createGameElement } from './element.js'
 
 export const obstacles = []
-export const coins = [] // keep track of all coins
+export const coins = [] 
 
 export function Obstacle(options = {}) {
     //default
@@ -10,7 +10,6 @@ export function Obstacle(options = {}) {
     const x = options.x || 200
     const y = options.y || 200
 
-    // use helper instead of manual styles
     const obstacle = createGameElement({
         width,
         height,
