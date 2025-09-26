@@ -1,6 +1,7 @@
 import { createGameElement } from './element.js'
 
 export const obstacles = []
+export const coins = [] // keep track of all coins
 
 export function Obstacle(options = {}) {
     //default
@@ -21,24 +22,29 @@ export function Obstacle(options = {}) {
         backgroundRepeat: options.backgroundRepeat
     })
 
-    obstacles.push({
-         obstacle, x, y, width, height
-    })
+    obstacles.push({ obstacle, x, y, width, height })
 
     return obstacle
 }
 
-// coins to keep scoor or something don't know yet. 
+// coins to keep score
 export function value(options = {}) {
+    const width = options.width || 60
+    const height = options.height || 60
+    const x = options.x || 100
+    const y = options.y || 100
+
     const coin = createGameElement({
-        width: options.width || 60,
-        height: options.height || 60,
-        x: options.x || 100,
-        y: options.y || 100,
+        width,
+        height,
+        x,
+        y,
         color: 'gold',
         borderRadius: 180
     })
 
+  
+    coins.push({ element: coin, x, y, width, height })
+
     return coin
 }
-

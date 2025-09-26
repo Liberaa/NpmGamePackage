@@ -1,8 +1,9 @@
 // collision.js
-import { obstacles } from "./obstacle.js"
+import { obstacles, coins } from "./obstacle.js"
+import { addScore } from "./score.js"
 
 /**
- * Handles player collisions with obstacles.
+ * Handles player collisions with obstacles and coins.
  * Uses AABB (Axis-Aligned Bounding Box) for simple 2D collision detection. Can Link overflow
  * https://stackoverflow.com/questions/79650138/swept-aabb-collision-between-circle-and-rectangle 
  *
@@ -18,6 +19,7 @@ export function handleCollisions(player, currentX, currentY, velocityY, isJumpin
     const playerWidth = parseInt(player.style.width)
     const playerHeight = parseInt(player.style.height)
 
+    // obstacle collisions
     for (const obstacle of obstacles) {
         // Step 1; Check if player overlaps with the obstacle
         const isColliding =
@@ -54,6 +56,26 @@ export function handleCollisions(player, currentX, currentY, velocityY, isJumpin
             }
         }
     }
+
+  // coin collisions
+for (const coin of coins) {
+    const isTouching =
+        currentX < coin.x + coin.width &&
+        currentX + playerWidth > coin.x &&
+        currentY < coin.y + coin.height &&
+        currentY + playerHeight > coin.y
+
+    if (isTouching) {
+        addScore(10)          // add 10 points for collecting
+        coin.element.remove() // remove coin from DOM
+
+        // remove coin from array without breaking the loop
+        const index = coins.indexOf(coin)
+        if (index !== -1) {
+            coins.splice(index, 1)
+        }
+    }
+}
 
     // Return updated state to index.js
     return { currentX, currentY, velocityY, isJumping }
