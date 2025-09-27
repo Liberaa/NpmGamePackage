@@ -1,4 +1,4 @@
-import { PlayerInput } from './brap.js'
+import { PlayerInput } from './PlayerInput.js'
 
 export function startPlayer(controlScheme = 'wasd', options = {}) {
   const player = document.createElement('div')
@@ -11,7 +11,7 @@ export function startPlayer(controlScheme = 'wasd', options = {}) {
   document.body.appendChild(player)
 
   const px = 'px'
-  const speed = options.speed || 12
+  const speed = options.speed || 8
   const gravity = options.gravity || 0.5
   const jumpStrength = options.jumpStrength || 12
   const ground = window.innerHeight - 60
@@ -61,6 +61,8 @@ export function startPlayer(controlScheme = 'wasd', options = {}) {
   }
 
   animate()
+
+  return { element: player }
 }
 
 window.startPlayer = startPlayer
