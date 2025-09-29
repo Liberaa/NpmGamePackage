@@ -1,4 +1,3 @@
-// PlayerInput.js
 export class PlayerInput {
   #scheme
   #left = false
@@ -11,19 +10,29 @@ export class PlayerInput {
     this.#scheme = scheme
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleKeyUp = this.handleKeyUp.bind(this)
+
     document.addEventListener('keydown', this.handleKeyDown)
     document.addEventListener('keyup', this.handleKeyUp)
   }
 
+  // Encapsulation of scheme (hide string comparison)
+  playerIsUsingWASD() {
+    return this.#scheme === 'wasd'
+  }
+
+  playerIsUsingPlatform() {
+    return this.#scheme === 'platform'
+  }
+
   handleKeyDown(event) {
     const key = event.key.toLowerCase()
-    if (this.#scheme === 'wasd') {
+    if (this.playerIsUsingWASD()) {
       if (key === 'a') this.#left = true
       if (key === 'd') this.#right = true
       if (key === 's') this.#down = true
       if (key === 'w') this.#up = true
       if (key === ' ') this.#jump = true
-    } else if (this.#scheme === 'platform') {
+    } else if (this.playerIsUsingPlatform()) {
       if (key === 'a') this.#left = true
       if (key === 'd') this.#right = true
       if (key === ' ') this.#jump = true
@@ -32,24 +41,25 @@ export class PlayerInput {
 
   handleKeyUp(event) {
     const key = event.key.toLowerCase()
-    if (this.#scheme === 'wasd') {
+    if (this.playerIsUsingWASD()) {
       if (key === 'a') this.#left = false
       if (key === 'd') this.#right = false
       if (key === 's') this.#down = false
       if (key === 'w') this.#up = false
       if (key === ' ') this.#jump = false
-    } else if (this.#scheme === 'platform') {
+    } else if (this.playerIsUsingPlatform()) {
       if (key === 'a') this.#left = false
       if (key === 'd') this.#right = false
       if (key === ' ') this.#jump = false
     }
   }
 
+  // Query methods
   playerWantsToGoLeft()  { return this.#left }
   playerWantsToGoRight() { return this.#right }
   playerWantsToGoUp()    { return this.#up }
   playerWantsToGoDown()  { return this.#down }
   playerWantsToJump()    { return this.#jump }
-  get controlScheme()    { return this.#scheme }
 
+  get controlScheme() { return this.#scheme }
 }
