@@ -180,10 +180,6 @@ export class GameElement {
       bottom: this.positionY + this.elementHeight
     }
   }
-
-  remove() {
-    this.htmlElement.remove()
-  }
 }
 ```
 
