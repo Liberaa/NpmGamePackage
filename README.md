@@ -1,11 +1,11 @@
 # learn2dgame-js
 
-A lightweight, beginner-friendly JavaScript library for learning 2D game development in the browser. Perfect for students, educators, and anyone wanting to learn javascript game development (Beginner Friendly).
+beginner-friendly JavaScript library for learning 2D game development in the browser. Perfect for students, educators, and anyone wanting to learn javascript game development (Beginner Friendly).
 
-# Link To Final Version : https://github.com/Liberaa/module 
-# Link To Working repository : https://github.com/Liberaa/NpmGamePackage 
+## Link To Final Version : https://github.com/Liberaa/module 
+## Link To Working repository : https://github.com/Liberaa/NpmGamePackage 
 
-## Features
+# Features
 
 - **Simple Player Movement** - WASD controls or platformer physics
 - **Collision Detection** - AABB collision system with obstacles
@@ -179,7 +179,9 @@ scenes.add(level1, 20)
 scenes.add(level2, 20)
 scenes.set(0)
 
-new Game('platform')
+new Game('platform', {
+    jumpStrengthValue: 50
+})
 ```
 
 ### Pause Menu
@@ -229,6 +231,17 @@ new Game('wasd', { movementSpeed: 5 })
 - **Double jump bug**: Spamming Space can trigger mid-air jumps
 - **Menu overlap**: Menu persists if open during scene change
 
+## Contributing
+
+This is an educational project and contributions are welcome!
+
+### How to Contribute
+
+1. **Report Bugs**: Found an issue? [Create a bug report](https://github.com/learn2dgame-js/issues/new)
+2. **Suggest Features**: Have ideas? [Open a feature request](https://github.com/learn2dgame-js/issues/new)
+3. **Submit Code**: Fork the repo, make your changes, and submit a pull request
+4. **Share Examples**: Create example games and share them with the community
+
 ## License
 
 MIT License - Perfect for learning and educational use!
@@ -242,3 +255,5 @@ https://github.com/Liberaa/NpmGamePackage/blob/main/LICENSE
 - **Quick Results**: Working game in minutes
 - **Foundation Building**: Learn concepts for larger projects
 
+# Want more Documentasion?
+## https://github.com/Liberaa/NpmGamePackage/blob/main/test/test.js 
