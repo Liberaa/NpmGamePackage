@@ -1,6 +1,9 @@
-# 2D Game Library
+# learn2dgame-js
 
-A lightweight, beginner-friendly JavaScript library for learning 2D game development in the browser. Perfect for students, educators, and anyone wanting to understand game programming fundamentals without the complexity of heavy game engines.
+A lightweight, beginner-friendly JavaScript library for learning 2D game development in the browser. Perfect for students, educators, and anyone wanting to learn javascript game development (Beginner Friendly).
+
+# Link To Final Version : https://github.com/Liberaa/module 
+# Link To Working repository : https://github.com/Liberaa/NpmGamePackage 
 
 ## Features
 
@@ -9,249 +12,233 @@ A lightweight, beginner-friendly JavaScript library for learning 2D game develop
 - **Score System** - Built-in scoring with UI display
 - **Scene Management** - Multiple levels/scenes support
 - **Menu System** - Pause menus and game UI
-- **Collectibles** - Coin/value collection system
+- **Collectibles** - Coin collection system
 - **No Dependencies** - Pure JavaScript, works in any modern browser
 
 ## Installation
 
 ```bash
-npm install your-2d-game-lib
+npm install learn2dgame-js
 ```
 
-Or use it directly with ES6 modules:
+### Option 1: With Vite (Recommended)
+
+```bash
+npm create vite@latest my-game -- --template vanilla
+cd my-game
+npm install learn2dgame-js
+```
 
 ```javascript
-import {
-  MoveDiv,
-  Obstacle,
-  value,
-  ScoreDisplay,
-  resetScore,
-  getScore,
-  addScene,
-  setScene,
-  nextScene,
-  createMenu,
-  closeMenu
-} from "your-2d-game-lib"
+import { Game, Obstacle, Coin, SceneManager, Menu, score } from 'learn2dgame-js'
 ```
 
-## Quick Start
+### Option 2: Without a Build Tool
 
-Create an `index.html` file:
+```bash
+npm install learn2dgame-js
+```
+
+Create `index.html`:
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First 2D Game</title>
-    <style>body { margin: 0; background: #333; }</style>
+    <meta charset="UTF-8">
+    <title>My Game</title>
 </head>
-<script type="module" src="game.js"></script>
+<body>
+    <script type="module" src="index.js"></script>
+</body>
 </html>
 ```
 
-Create a `game.js` file:
+In `index.js`:
 
 ```javascript
-import { MoveDiv, Obstacle, value, ScoreDisplay, addScene, setScene } from "your-2d-game-lib"
-
-// Create score display and player
-ScoreDisplay()
-MoveDiv({ controlscheme: "platform" })
-
-// Create first scene
-addScene(() => {
-  Obstacle({ x: 100, y: 600, width: 800, height: 80, color: "brown" })
-  Obstacle({ x: 400, y: 400, width: 200, height: 20, color: "green" })
-  
-  value({ x: 300, y: 550 })
-  value({ x: 500, y: 350 })
-})
-
-setScene(0)
+import { Game, Obstacle, Coin, SceneManager, Menu, score } from './node_modules/learn2dgame-js/dist/learn2dgame-js.js'
 ```
+
+Open with **Live Server** (VS Code extension) or any local development server.
+
+## Quick Start
+
+```javascript
+import { Game, Obstacle, Coin, SceneManager } from 'learn2dgame-js'
+
+const scenes = new SceneManager()
+
+function level1() {
+  new Obstacle({ positionX: 200, positionY: 500, width: 400, height: 50, color: 'brown' })
+  new Coin({ positionX: 300, positionY: 450 })
+}
+
+scenes.add(level1, 20)
+scenes.set(0)
+
+new Game('platform', {
+  movementSpeed: 10,
+  jumpStrengthValue: 15,
+  color: 'blue'
+})
+```
+
+**Controls:**
+- **A** = Move left
+- **D** = Move right  
+- **Space** = Jump
 
 ## API Reference
 
-### Player Movement
+### Game
 
 ```javascript
-MoveDiv(options)
+new Game(controlScheme, options)
 ```
 
-**Options:**
-- `controlscheme`: `"wasd"` or `"platform"` (default: "wasd")
-- `color`: Player color (default: varies)
-- `image`: Background image URL
-- `speed`: Movement speed (default: 15)
-- `jump`: Jump strength for platformer (default: 15)
-- `gravity`: Gravity strength (default: 0.3)
-- `ground`: Ground level Y position (default: 900)
+**Parameters:**
+- `controlScheme`: `'wasd'` or `'platform'`
+- `options`:
+  - `movementSpeed` (number): Player speed (default: 8)
+  - `gravityForce` (number): Gravity for platform mode (default: 0.5)
+  - `jumpStrengthValue` (number): Jump power (default: 12)
+  - `color` (string): Player color (default: 'red')
 
-**Examples:**
+### Obstacle
 
 ```javascript
-// WASD movement
-MoveDiv({ controlscheme: "wasd", color: "red" })
-
-// Platformer with custom physics
-MoveDiv({ controlscheme: "platform", jump: 20, gravity: 0.4 })
+new Obstacle({ positionX, positionY, width, height, color, border })
 ```
 
-### Obstacles
+Creates a platform or wall.
+
+### Coin
 
 ```javascript
-Obstacle(options)
+new Coin({ positionX, positionY, size })
 ```
 
-Create solid platforms and walls that the player collides with.
+Creates a collectible coin (worth 10 points).
+
+### SceneManager
 
 ```javascript
-// Basic platform
-Obstacle({ x: 200, y: 500, width: 300, height: 50, color: "brown" })
-
-// Colored obstacle
-Obstacle({ x: 100, y: 200, width: 80, height: 80, color: "red" })
+const scenes = new SceneManager()
+scenes.add(sceneFn, targetScore)  // Register scene
+scenes.set(index)                 // Load scene
+scenes.next()                     // Next scene
 ```
 
-### Collectibles
+### Score
 
 ```javascript
-value(options)
+import { score } from 'learn2dgame-js'
+
+score.add(points)     // Add points
+score.reset()         // Reset to 0
+score.value           // Current score
 ```
 
-Create coins or items that give points when collected.
+### Menu
 
 ```javascript
-// Default gold coin (10 points)
-value({ x: 300, y: 200 })
+const menu = new Menu()
 
-// Custom collectible
-value({ x: 500, y: 150, width: 40, height: 40 })
-```
-
-### Score System
-
-```javascript
-// Display score UI
-ScoreDisplay()
-
-// Get current score
-const currentScore = getScore()
-
-// Add points manually
-addScore(50)
-
-// Reset score to 0
-resetScore()
-```
-
-### Scene Management
-
-```javascript
-// Add a new scene/level
-addScene(() => {
-  // Place obstacles and collectibles here
-  Obstacle({ x: 100, y: 500, width: 200, height: 50, color: "blue" })
-  value({ x: 150, y: 450 })
-})
-
-// Switch to scene by index
-setScene(0) // First scene
-
-// Go to next scene
-nextScene()
-
-// Get current scene index
-const currentScene = getCurrentSceneIndex()
-```
-
-### Menu System
-
-```javascript
-// Create a pause menu
-createMenu({
-  title: "Game Paused",
+menu.create({
+  title: 'Pause Menu',
   buttons: [
-    { text: "Resume", onClick: () => closeMenu() },
-    { text: "Restart", onClick: () => window.location.reload() },
-    { text: "Main Menu", onClick: () => setScene(0) }
+    { text: 'Resume', onClick: () => menu.close() }
   ]
 })
 
-// Close any open menu
-closeMenu()
+menu.close()
 ```
 
-## Complete Game Example
+## Examples
+
+### Multi-Level Game
 
 ```javascript
-import {
-  MoveDiv, Obstacle, value, ScoreDisplay,
-  addScene, setScene, nextScene, getScore, createMenu, closeMenu
-} from "your-2d-game-lib"
+import { Game, Obstacle, Coin, SceneManager } from 'learn2dgame-js'
 
-// Initialize
-ScoreDisplay()
-MoveDiv({ controlscheme: "platform" })
+const scenes = new SceneManager()
 
-// Level 1
-addScene(() => {
-  Obstacle({ x: 100, y: 600, width: 800, height: 80, color: "brown" })
-  Obstacle({ x: 400, y: 450, width: 150, height: 20, color: "green" })
-  value({ x: 200, y: 550 })
-  value({ x: 450, y: 400 })
-})
+function level1() {
+  new Obstacle({ positionX: 200, positionY: 500, width: 300, height: 50, color: 'brown' })
+  new Coin({ positionX: 300, positionY: 450 })
+}
 
-// Level 2
-addScene(() => {
-  Obstacle({ x: 50, y: 650, width: 200, height: 50, color: "brown" })
-  Obstacle({ x: 350, y: 500, width: 100, height: 20, color: "green" })
-  Obstacle({ x: 600, y: 350, width: 100, height: 20, color: "green" })
-  value({ x: 375, y: 450 })
-  value({ x: 625, y: 300 })
-})
+function level2() {
+  new Obstacle({ positionX: 100, positionY: 500, width: 150, height: 50, color: 'green' })
+  new Obstacle({ positionX: 350, positionY: 400, width: 150, height: 50, color: 'green' })
+  new Coin({ positionX: 400, positionY: 350 })
+}
 
-setScene(0)
+scenes.add(level1, 20)
+scenes.add(level2, 20)
+scenes.set(0)
 
-// Auto-advance levels
-setInterval(() => {
-  if (getScore() >= 20) nextScene()
-}, 1000)
+new Game('platform')
+```
 
-// Pause menu (Press 'P')
-document.addEventListener("keydown", (e) => {
-  if (e.key === "p") {
-    createMenu({
-      title: "Paused",
+### Pause Menu
+
+```javascript
+import { Menu, score } from 'learn2dgame-js'
+
+const menu = new Menu()
+
+document.addEventListener('keydown', e => {
+  if (e.key.toLowerCase() === 'm') {
+    menu.create({
+      title: 'Pause',
       buttons: [
-        { text: "Resume", onClick: () => closeMenu() },
-        { text: "Restart", onClick: () => window.location.reload() }
+        { text: 'Resume', onClick: () => menu.close() },
+        { text: 'Reset Score', onClick: () => score.reset() }
       ]
     })
   }
 })
 ```
 
-## Contributing
+### Level Design Tips
 
-This is an educational project! Feel free to:
-- Report bugs
-- Suggest features
-- Submit improvements
-- Create example games
+**Easy staircase:**
+```javascript
+new Obstacle({ positionX: 100, positionY: 500, width: 150, height: 50 })
+new Obstacle({ positionX: 250, positionY: 450, width: 150, height: 50 })
+new Obstacle({ positionX: 400, positionY: 400, width: 150, height: 50 })
+```
+
+**Gap jumping:**
+```javascript
+new Obstacle({ positionX: 100, positionY: 500, width: 150, height: 50 })
+new Obstacle({ positionX: 350, positionY: 500, width: 150, height: 50 })
+```
+
+### WASD (Top-Down) Mode
+
+```javascript
+new Game('wasd', { movementSpeed: 5 })
+```
+
+
+## Known Issues
+
+- **Double jump bug**: Spamming Space can trigger mid-air jumps
+- **Menu overlap**: Menu persists if open during scene change
 
 ## License
 
 MIT License - Perfect for learning and educational use!
+https://github.com/Liberaa/NpmGamePackage/blob/main/LICENSE 
 
-## Why This Library?
+## Why This Library :P ?
 
 - **Learning Focused**: Understand game development step by step
-- **No Magic**: Simple, readable code you can modify
-- **Immediate Results**: See your game running in minutes
-- **Foundation Building**: Learn concepts applicable to larger engines
-- **Browser Native**: No complex setup or build tools required
+- **No Complex Setup**: Just JavaScript and a browser
+- **Simple Code**: Readable, modifiable source code
+- **Quick Results**: Working game in minutes
+- **Foundation Building**: Learn concepts for larger projects
 
-Start building your first 2D game today!
